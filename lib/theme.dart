@@ -27,5 +27,16 @@ ThemeData appTheme = ThemeData.light().copyWith(
         color: Color(0xff3e433d),
       ),
     ),
+    headline5: GoogleFonts.nunito(
+      fontSize: 20,
+      fontWeight: FontWeight.w900,
+    ),
+    bodyText2: GoogleFonts.nunito(
+      fontSize: 16,
+    ),
+  ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    primary: const Color(0xff91c789),
+    secondary: const Color(0xff91c789),
   ),
 );
