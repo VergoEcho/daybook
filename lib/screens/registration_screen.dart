@@ -1,5 +1,8 @@
 import 'package:daybook/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/user_cubit.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
@@ -57,6 +60,7 @@ class RegistrationScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 32),
                       const TextField(
+                        // onChanged: () => context.read<UserCubit>.login,
                         decoration: InputDecoration(hintText: 'Name'),
                       ),
                       const TextField(
@@ -77,9 +81,11 @@ class RegistrationScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        onPressed: false ? null : () {
-                          Navigator.pushNamed(context, HomeScreen.route);
-                        },
+                        onPressed: false
+                            ? null
+                            : () {
+                                Navigator.pushNamed(context, HomeScreen.route);
+                              },
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(
@@ -99,15 +105,33 @@ class RegistrationScreen extends StatelessWidget {
                                       color: const Color(0xff0f140E),
                                     ),
                           ),
-                          TextButton(
-                            onPressed: () => Navigator.pushNamed(context, HomeScreen.route),
-                            child: Text(
-                              'Sign In',
-                              style:
-                                  Theme.of(context).textTheme.bodyText2?.copyWith(
-                                        color: Theme.of(context).colorScheme.primary,
+                          BlocBuilder<UserCubit, UserState>(
+                            builder: (context, UserState state) {
+                              return TextButton(
+                                onPressed: state is UserLoadInProgress
+                                    ? null
+                                    : () {
+                                        if (state is UserInputInProgress) {
+                                          context
+                                              .read<UserCubit>()
+                                              .login(state.name);
+                                          Navigator.pushNamed(
+                                              context, HomeScreen.route);
+                                        }
+                                      },
+                                child: Text(
+                                  'Sign In',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
                                       ),
-                            ),
+                                ),
+                              );
+                            },
                           )
                         ],
                       )

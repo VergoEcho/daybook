@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/user_bloc.dart';
+import 'bloc/user_cubit.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -20,14 +20,19 @@ class Daybook extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Daybook',
-      theme: appTheme,
-      initialRoute: RegistrationScreen.route,
-      routes: {
-        HomeScreen.route: (context) => const HomeScreen(),
-        RegistrationScreen.route: (context) => const RegistrationScreen(),
-      },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => UserCubit()),
+      ],
+      child: MaterialApp(
+        title: 'Daybook',
+        theme: appTheme,
+        initialRoute: RegistrationScreen.route,
+        routes: {
+          HomeScreen.route: (context) => const HomeScreen(),
+          RegistrationScreen.route: (context) => const RegistrationScreen(),
+        },
+      ),
     );
   }
 }
