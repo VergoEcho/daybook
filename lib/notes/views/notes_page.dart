@@ -1,11 +1,10 @@
-import 'package:daybook/components/day_tile.dart';
-import 'package:daybook/components/UI/navigation_drawer.dart';
+import 'package:daybook/notes/views/notes_drawer.dart';
+import 'package:daybook/notes/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-import '../components/UI/custom_appbar.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class NotesPage extends StatelessWidget {
+  const NotesPage({super.key});
 
   static String route = '/home';
 
@@ -21,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           );
         }),
       ),
-      drawer: const NavigationDrawer(),
+      drawer: const NotesDrawer(),
       backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: Column(

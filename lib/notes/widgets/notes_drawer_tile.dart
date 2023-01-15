@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class NavigationTile extends StatelessWidget {
-  const NavigationTile({
+class NotesDrawerTile extends StatelessWidget {
+  const NotesDrawerTile({
     Key? key,
     required this.icon,
     required this.title,

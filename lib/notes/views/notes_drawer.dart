@@ -1,10 +1,10 @@
-import 'package:daybook/screens/registration_screen.dart';
+import 'package:daybook/authentication/views/authentication_page.dart';
 import 'package:flutter/material.dart';
 
-import 'navigation_tile.dart';
+import 'package:daybook/notes/widgets/notes_drawer_tile.dart';
 
-class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({
+class NotesDrawer extends StatelessWidget {
+  const NotesDrawer({
     Key? key,
   }) : super(key: key);
 
@@ -52,40 +52,40 @@ class NavigationDrawer extends StatelessWidget {
                       ?.copyWith(fontWeight: FontWeight.w900),
                 ),
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.workspace_premium_rounded,
                 title: 'Buy Premium',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.palette_rounded,
                 title: 'App Theme',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.edit_rounded,
                 title: 'Edit Profile',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.notifications_rounded,
                 title: 'Notifications',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.lock_rounded,
                 title: 'Diary Lock',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.share_rounded,
                 title: 'Share',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
-              NavigationTile(
+              NotesDrawerTile(
                 icon: Icons.logout_rounded,
                 title: 'Log Out',
-                link: RegistrationScreen.route,
+                link: AuthenticationPage.route,
               ),
             ],
           ),

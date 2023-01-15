@@ -1,11 +1,9 @@
-import 'package:daybook/screens/home_screen.dart';
+import 'package:daybook/notes/views/notes_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/user_cubit.dart';
-
-class RegistrationScreen extends StatelessWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+class AuthenticationPage extends StatelessWidget {
+  const AuthenticationPage({Key? key}) : super(key: key);
 
   static String route = '/';
 
@@ -84,7 +82,7 @@ class RegistrationScreen extends StatelessWidget {
                         onPressed: false
                             ? null
                             : () {
-                                Navigator.pushNamed(context, HomeScreen.route);
+                                Navigator.pushNamed(context, NotesPage.route);
                               },
                         child: const Text(
                           'Sign Up',
@@ -116,7 +114,7 @@ class RegistrationScreen extends StatelessWidget {
                                               .read<UserCubit>()
                                               .login(state.name);
                                           Navigator.pushNamed(
-                                              context, HomeScreen.route);
+                                              context, NotesPage.route);
                                         }
                                       },
                                 child: Text(

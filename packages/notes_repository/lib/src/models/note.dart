@@ -1,25 +1,19 @@
-class Posts {
-  int? id;
+class Note {
   String? title;
   String? body;
-  int? userId;
 
-  Posts(
-      {this.id, this.title, this.body, this.userId});
+  Note(
+      {this.title, this.body});
 
-  Posts.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Note.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     body = json['body'];
-    userId = json['userId'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['title'] = title;
     data['body'] = body;
-    data['userId'] = userId;
     return data;
   }
 }
