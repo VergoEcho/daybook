@@ -17,7 +17,7 @@ class App extends StatelessWidget {
     ]);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => NoteBloc()),
+        BlocProvider(create: (context) => NoteBloc()..add(NoteFetched())),
       ],
       child: MaterialApp(
         title: 'Daybook',

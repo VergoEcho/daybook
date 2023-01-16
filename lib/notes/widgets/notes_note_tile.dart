@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-class DayTile extends StatelessWidget {
-  const DayTile({
+class NotesNoteTile extends StatelessWidget {
+  const NotesNoteTile({
     Key? key,
+    required this.title,
+    required this.description,
   }) : super(key: key);
+
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +16,7 @@ class DayTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(15)),
+          color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: [
           Row(
@@ -22,31 +26,22 @@ class DayTile extends StatelessWidget {
                 height: 48,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       '3 August',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6
-                          ?.copyWith(
-                        fontWeight: FontWeight.normal,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primary,
-                      ),
+                      style: Theme.of(context).textTheme.headline6?.copyWith(
+                            fontWeight: FontWeight.normal,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
                     ),
                     Text(
-                      'I have learned that...',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline3
-                          ?.copyWith(
-                        color: const Color(0xff0f140E),
-                        fontWeight: FontWeight.w700,
-                      ),
+                      '${title.substring(0, 20)}...',
+                      style: Theme.of(context).textTheme.headline3?.copyWith(
+                            color: const Color(0xff0f140E),
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                   ],
                 ),
@@ -58,13 +53,14 @@ class DayTile extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(height: 8,),
+          const SizedBox(
+            height: 8,
+          ),
           Text(
             'This semester was the first time that I have kept a daybook. I have heard about the concept of a daybook previously',
-            style:
-            Theme.of(context).textTheme.bodyText2?.copyWith(
-              color: const Color(0xff0f140E),
-            ),
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                  color: const Color(0xff0f140E),
+                ),
           )
         ],
       ),
