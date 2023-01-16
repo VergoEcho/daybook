@@ -103,34 +103,34 @@ class AuthenticationPage extends StatelessWidget {
                                       color: const Color(0xff0f140E),
                                     ),
                           ),
-                          BlocBuilder<UserCubit, UserState>(
-                            builder: (context, UserState state) {
-                              return TextButton(
-                                onPressed: state is UserLoadInProgress
-                                    ? null
-                                    : () {
-                                        if (state is UserInputInProgress) {
-                                          context
-                                              .read<UserCubit>()
-                                              .login(state.name);
-                                          Navigator.pushNamed(
-                                              context, NotesPage.route);
-                                        }
-                                      },
-                                child: Text(
-                                  'Sign In',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                      ),
-                                ),
-                              );
-                            },
-                          )
+                          // BlocBuilder<UserCubit, UserState>(
+                          //   builder: (context, UserState state) {
+                          //     return TextButton(
+                          //       onPressed: state is UserLoadInProgress
+                          //           ? null
+                          //           : () {
+                          //               if (state is UserInputInProgress) {
+                          //                 context
+                          //                     .read<UserCubit>()
+                          //                     .login(state.name);
+                          //                 Navigator.pushNamed(
+                          //                     context, NotesPage.route);
+                          //               }
+                          //             },
+                          //       child: Text(
+                          //         'Sign In',
+                          //         style: Theme.of(context)
+                          //             .textTheme
+                          //             .bodyText2
+                          //             ?.copyWith(
+                          //               color: Theme.of(context)
+                          //                   .colorScheme
+                          //                   .primary,
+                          //             ),
+                          //       ),
+                          //     );
+                          //   },
+                          // )
                         ],
                       )
                     ],

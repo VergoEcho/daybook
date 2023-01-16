@@ -1,19 +1,16 @@
-class Note {
-  String? title;
-  String? body;
+import 'package:equatable/equatable.dart';
 
-  Note(
-      {this.title, this.body});
+class Note extends Equatable {
+  const Note({
+    required this.id,
+    required this.title,
+    required this.body,
+  });
 
-  Note.fromJson(Map<String, dynamic> json) {
-    title = json['title'];
-    body = json['body'];
-  }
+  final int id;
+  final String title;
+  final String body;
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['title'] = title;
-    data['body'] = body;
-    return data;
-  }
+  @override
+  List<Object?> get props => [id, title, body];
 }

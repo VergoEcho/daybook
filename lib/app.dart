@@ -4,6 +4,7 @@ import 'package:daybook/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:daybook/notes/bloc/note_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
     ]);
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => UserCubit()),
+        BlocProvider(create: (context) => NoteBloc()),
       ],
       child: MaterialApp(
         title: 'Daybook',
