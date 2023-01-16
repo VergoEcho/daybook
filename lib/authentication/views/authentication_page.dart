@@ -1,6 +1,5 @@
 import 'package:daybook/notes/views/notes_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthenticationPage extends StatelessWidget {
   const AuthenticationPage({Key? key}) : super(key: key);
@@ -103,34 +102,20 @@ class AuthenticationPage extends StatelessWidget {
                                       color: const Color(0xff0f140E),
                                     ),
                           ),
-                          // BlocBuilder<UserCubit, UserState>(
-                          //   builder: (context, UserState state) {
-                          //     return TextButton(
-                          //       onPressed: state is UserLoadInProgress
-                          //           ? null
-                          //           : () {
-                          //               if (state is UserInputInProgress) {
-                          //                 context
-                          //                     .read<UserCubit>()
-                          //                     .login(state.name);
-                          //                 Navigator.pushNamed(
-                          //                     context, NotesPage.route);
-                          //               }
-                          //             },
-                          //       child: Text(
-                          //         'Sign In',
-                          //         style: Theme.of(context)
-                          //             .textTheme
-                          //             .bodyText2
-                          //             ?.copyWith(
-                          //               color: Theme.of(context)
-                          //                   .colorScheme
-                          //                   .primary,
-                          //             ),
-                          //       ),
-                          //     );
-                          //   },
-                          // )
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pushNamed(context, NotesPage.route),
+                            child: Text(
+                              'Sign In',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                  ),
+                            ),
+                          )
                         ],
                       )
                     ],

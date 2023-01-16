@@ -18,6 +18,7 @@ class NotesNoteTile extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -37,7 +38,7 @@ class NotesNoteTile extends StatelessWidget {
                           ),
                     ),
                     Text(
-                      '${title.substring(0, 20)}...',
+                      title.length > 30 ? '${title.substring(0, 29)}...' : title,
                       style: Theme.of(context).textTheme.headline3?.copyWith(
                             color: const Color(0xff0f140E),
                             fontWeight: FontWeight.w700,
@@ -57,7 +58,7 @@ class NotesNoteTile extends StatelessWidget {
             height: 8,
           ),
           Text(
-            'This semester was the first time that I have kept a daybook. I have heard about the concept of a daybook previously',
+            description,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   color: const Color(0xff0f140E),
                 ),

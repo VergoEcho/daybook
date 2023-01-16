@@ -1,14 +1,27 @@
 import 'package:daybook/notes/bloc/note_bloc.dart';
 import 'package:daybook/notes/views/notes_drawer.dart';
-import 'package:daybook/notes/widgets/bottom_loader.dart';
+import 'package:daybook/notes/views/notes_list.dart';
 import 'package:daybook/notes/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotesPage extends StatelessWidget {
+class NotesPage extends StatefulWidget {
   const NotesPage({super.key});
 
   static String route = '/home';
+
+  @override
+  State<NotesPage> createState() => _NotesPageState();
+}
+
+class _NotesPageState extends State<NotesPage> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +59,7 @@ class NotesPage extends StatelessWidget {
                       ]).createShader(rect);
                 },
                 child: ListView(
+                  controller: _scrollController,
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   children: [
@@ -117,41 +131,7 @@ class NotesPage extends StatelessWidget {
                     ),
                     const Divider(),
                     const SizedBox(height: 16),
-                    BlocBuilder<NoteBloc, NoteState>(builder: (context, state) {
-                      switch (state.status) {
-                        case NoteStatus.failure:
-                          return const Center(
-                            child: Text('Failed to fetch posts'),
-                          );
-                        case NoteStatus.success:
-                          if (state.notes.isEmpty) {
-                            return const Center(
-                              child: Text('No notes...'),
-                            );
-                          }
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return index >= state.notes.length
-                                  ? const BottomLoader()
-                                  : NotesNoteTile(
-                                      title: state.notes[index].title,
-                                      description: state.notes[index].body,
-                                      key:
-                                          Key(state.notes[index].id.toString()),
-                                    );
-                            },
-                            itemCount: state.hasReachedMax
-                                ? state.notes.length
-                                : state.notes.length + 1,
-                            // controller: _scrollController,
-                          );
-                        case NoteStatus.initial:
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                      }
-                    }),
+                    const NotesList(),
                   ],
                 ),
               ),
@@ -160,5 +140,24 @@ class NotesPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController
+      ..removeListener(_onScroll)
+      ..dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) context.read<NoteBloc>().add(NoteFetched());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= maxScroll * 0.9;
   }
 }

@@ -16,7 +16,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
   };
 }
 
-const int _limitNotes = 20;
+const int _limitNotes = 15;
 
 const throttleDuration = Duration(milliseconds: 100);
 
